@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>TodoList</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.1/css/dataTables.bootstrap4.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+  <div class="row">
+  	<div class="col-md-3"></div>
+    <div class="col-md-6">
+      <h1 class="text-center">Nambah Todo List</h1>
+      <div class="card">
+        <div class="card-body">
+            @if(model)
+            <form action="/insert-data" method="post">
+            @else
+            <form action="/update-data?_method=PUT" method="post">
+            <input type="hidden" name='id' value="{{ mo.id }}" />
+            @endif
+      		<div class="form-group">
+      			<label>Tugas</label>
+      			<input class="form-control"
+                  @if(model == false)
+          			value="{{ mo.tugas }}"
+                  @endif
+      			placeholder="Silakan Isi Tugas" name="tugas" required />
+          	</div>
+          	<div class="form-group">
+          		<label>Deskripsi : <small>
+                    @if(model == false)~
+                    {{ mo.deskripsi }}
+                    @endif~
+                </small></label>
+          		<textarea class="form-control" name="deskripsi" placeholder="Silakan Isi Deskripsi" required></textarea>
+          	</div>
+          	<div class="form-group">
+                  @if(model)
+          			<button class="btn btn-success" type="submit">Nambah</button>
+                  @else
+          			<button class="btn btn-primary" type="submit">Update</button>
+                  @endif
+          		<a href="/todo" class="btn btn-warning">Kembali</a>
+          	</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
